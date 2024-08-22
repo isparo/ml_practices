@@ -78,7 +78,6 @@ plt.tight_layout()
 plt.show()
 
 
-
 # Calcular la precisión en el conjunto de prueba
 accuracy = lr.score(X_test_std, y_test)
 print('Precisión en el conjunto de prueba: {:.2f}'.format(accuracy))

@@ -28,7 +28,7 @@ print(df.describe())
 plt.figure(figsize=(12, 10))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
 plt.title('Correlation Matrix')
-plt.show()
+# plt.show()
 
 # Feature and target separation
 selected_columns = ['accelerations','prolongued_decelerations', 'abnormal_short_term_variability', 'percentage_of_time_with_abnormal_long_term_variability', 'mean_value_of_long_term_variability']
@@ -48,7 +48,7 @@ X_test_scaled = scaler.transform(X_test)
 plt.figure(figsize=(6, 4))
 sns.countplot(x='fetal_health', data=df)
 plt.title('Distribution of Fetal Health Classes')
-plt.show()
+# plt.show()
 
 # Visualizing the feature distributions
 df.hist(bins=15, figsize=(20, 15), edgecolor='black')
