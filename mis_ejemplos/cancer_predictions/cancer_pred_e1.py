@@ -22,15 +22,6 @@ cancerDS.columns
 y = cancerDS['diagnosis']
 X = cancerDS.drop(['id','diagnosis','Unnamed: 32'],axis=1)
 
-# print('____')
-# print(cancerDS)
-
-# print('____')
-
-# print(y)
-# print('____')
-# print(X)
-
 le = LabelEncoder()
 y = le.fit_transform(y)
 le.transform(['M', 'B'])
@@ -59,6 +50,7 @@ model.fit(X_train_scaled, y_train)
 
 # Predecir en el conjunto de prueba
 y_pred = model.predict(X_test_scaled)
+
 
 # Evaluar el modelo
 print("\nMatriz de Confusión:")
