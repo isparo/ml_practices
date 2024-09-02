@@ -10,8 +10,12 @@ from sklearn.utils import resample
 from skopt.space import Real, Categorical, Integer
 
 from imblearn.over_sampling import SMOTE
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 from skopt import BayesSearchCV
+
+from matplotlib.colors import ListedColormap
+import numpy as np
 
 
 # Paso 1: Cargar los datos
@@ -36,14 +40,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,  random
 scaler = StandardScaler()
 X_train_std = scaler.fit_transform(X_train)
 X_test_std = scaler.transform(X_test)
-
-# Paso 3: Crear el modelo con los hiperparámetros especificados
-# model = LogisticRegression(
-#     C=1.0,
-#     random_state=1,
-#     solver='lbfgs'
-#     # multi_class='ovr'
-# )
 
 model = RandomForestClassifier( random_state=17)
 
@@ -105,12 +101,23 @@ bayes_search = BayesSearchCV(
 )
 
 bayes_search.fit(X_train_std_up, y_train_up)
-
 best_model = bayes_search.best_estimator_
-
 y_pred_bs = best_model.predict(X_test_std_up)
 
 accuracy = accuracy_score(y_test_up, y_pred_bs)
 print(f"Accuracy: {accuracy:.3f}")
 
 print("Best hyperparameters:", bayes_search.best_params_)
+
+
+# grafico de conteo de claces
+plt.figure(figsize=(6, 4))
+sns.countplot(x='Potability', data=df)
+plt.title('Distribution of Glass Classes df')
+# plt.show()
+
+plt.figure(figsize=(6, 4))
+sns.countplot(x='Potability', data=df_upsampled)
+plt.title('Distribution of Glass Classes df_upsampled')
+plt.show()
+
